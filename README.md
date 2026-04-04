@@ -1,44 +1,35 @@
-# 🌿 Your Sanctuary — Flutter Frontend
+# pillow fort — Flutter Frontend
 
-Cosy productivity app. Flutter-only frontend, ready for backend integration.
+Cosy productivity app. Flutter + Rive.
 
-## Project Structure
+- lock the goal and sign the Convenant scroll 
+- achieve goals everyday
+- check stats to track progress
+- spoil your childhood version with snacks and accessories!
+- if you don't perform, the childhood version within you dies :(
 
-```
-lib/
-├── main.dart                    # App entry, bottom nav shell
-├── theme/
-│   └── app_theme.dart           # Colors, theme, shared card decoration
-├── screens/
-│   ├── sanctuary_screen.dart    # Home screen with mascot + focus button
-│   ├── focus_session_screen.dart# Timer screen (25min default, editable)
-│   ├── progress_screen.dart     # Stats + animated chart + 30-day grid
-│   └── placeholder_screens.dart # Shop + Profile (stubs)
-└── widgets/
-    └── app_nav_bar.dart         # Bottom navigation bar
-```
+## frontend setup
 
-## Setup
+cd frontend
 
-### 1. Get DynaPuff font
+### Get DynaPuff font
 Download from [Google Fonts](https://fonts.google.com/specimen/DynaPuff) and place the `.ttf` files in:
 ```
-assets/fonts/
-  DynaPuff-Regular.ttf
-  DynaPuff-Medium.ttf
-  DynaPuff-SemiBold.ttf
-  DynaPuff-Bold.ttf
-```
-Create the directory first: `mkdir -p assets/fonts`
+assets/fonts/ 
+``` 
 
-### 2. Install dependencies
+### Install dependencies
 ```bash
 flutter pub get
 ```
 
-### 3. Run
+### Run
 ```bash
 flutter run
+
+# command to host it on local ip network 
+# so you can open http://IP_address:8080 on phone and test)
+flutter run -d web-server --web-port 8080 --web-hostname 0.0.0.0
 ```
 
 ---
@@ -55,7 +46,7 @@ flutter run
 
 ---
 
-## Integrating Your Rive Mascot
+## Integrating Rive Mascot
 
 1. Add `rive: ^0.12.4` to `pubspec.yaml` dependencies
 2. Place your `.riv` file at `assets/rive/mascot.riv`
@@ -84,16 +75,3 @@ All backend hooks are marked with `// TODO: connect to backend` comments.
 | `FocusSessionScreen` | POST completed session on timer end |
 
 Replace the mock constants at the top of each screen with your API calls.
-
----
-
-## 30-Day Activity Grid
-
-- **Studied day** → sage green cell, shows hours (e.g. `2.5`)
-- **Missed day** → red-tinted cell with day number
-- **Future day** → greyed out
-
-Intensity of green scales with hours studied (up to 6h = full intensity).
-
-command to host it on local ip network (you can open http://IP_address:8080 on phone)
-flutter run -d web-server --web-port 8080 --web-hostname 0.0.0.0

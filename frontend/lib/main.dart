@@ -76,16 +76,16 @@ class _StartupRouterState extends State<_StartupRouter>
     final done = prefs.getBool('onboarding_done') ?? false;
     if (!mounted) return;
 
-    Widget next;
-    if (done) {
-      next = const MainShell();
-    } else {
-      next = OnboardingScreen(onComplete: () => _finishOnboarding(context));
-    }
-
     Navigator.of(context).pushReplacement(PageRouteBuilder(
       transitionDuration: const Duration(milliseconds: 500),
-      pageBuilder: (_, __, ___) => next,
+      pageBuilder: (routeCtx, __, ___) {
+        if (done) {
+          return const MainShell();
+        } else {
+          return OnboardingScreen(
+              onComplete: () => _finishOnboarding(routeCtx));
+        }
+      },
       transitionsBuilder: (_, anim, __, child) =>
           FadeTransition(opacity: anim, child: child),
     ));
