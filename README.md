@@ -10,22 +10,23 @@ Cosy productivity app.
 
 Tech Stack / tools: Flutter, Dart, Rive, Figma
 
-## frontend setup
-
+## Frontend Setup
+```
 cd frontend
+```
 
-### Get DynaPuff font
+#### Get DynaPuff font
 Download from [Google Fonts](https://fonts.google.com/specimen/DynaPuff) and place the `.ttf` files in:
 ```
 assets/fonts/ 
 ``` 
 
-### Install dependencies
+#### Install dependencies
 ```bash
 flutter pub get
 ```
 
-### Run
+#### Run
 ```bash
 flutter run
 
