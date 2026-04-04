@@ -1,12 +1,14 @@
-# pillow fort — Flutter Frontend
+# pillow fort  
 
-Cosy productivity app. Flutter + Rive.
+Cosy productivity app. 
 
 - lock the goal and sign the Convenant scroll 
 - achieve goals everyday
 - check stats to track progress
 - spoil your childhood version with snacks and accessories!
 - if you don't perform, the childhood version within you dies :(
+
+Tech Stack / tools: Flutter, Dart, Rive, Figma
 
 ## frontend setup
 
