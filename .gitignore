@@ -1,0 +1,55 @@
+# 1. Operating System Files  
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+Thumbs.db
+desktop.ini
+
+# 2. Flutter/Dart Build Files  
+.dart_tool/
+.packages
+.pub-cache/
+.pub/
+build/ 
+.fvm/flutter_sdk
+
+# 3. Android Specifics
+.gradle/
+local.properties
+*.kwks
+*.keystore
+/android/app/debug.keystore
+/android/app/profile.keystore
+/android/app/release.keystore
+
+# 4. iOS Specifics
+ios/Flutter/Generated.xcconfig
+ios/Flutter/flutter_export_environment.sh
+ios/Flutter/App.framework
+ios/Flutter/Flutter.framework
+ios/Flutter/Generated.xcconfig
+/ios/Pods/
+/ios/.symlinks/
+/ios/DerivedData/
+*.moved-aside
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+/ios/ServiceDefinitions.json
+
+# 5. Web Specifics
+/web/index.html.tmp
+
+# 6. IDE Specifics (VS Code, Cursor, IntelliJ)
+.vscode/
+.idea/
+*.iml
+*.iws
+.project
+.settings/
+.metadata
+
+# 7. Secrets & Environment Variables (CRITICAL)
+.env*
+*.secret
