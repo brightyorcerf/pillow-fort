@@ -1,0 +1,20 @@
+name: productivity
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.11
+  - pip
+  - fastapi
+  - uvicorn
+  - sqlalchemy
+  - alembic
+  - pydantic
+  - pydantic-settings
+  - pyjwt
+  - argon2-cffi
+  - httpx
+  - asyncpg
+  - pip:
+      - aiosmtplib
+      - email-validator
