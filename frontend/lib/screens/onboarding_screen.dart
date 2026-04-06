@@ -198,6 +198,88 @@ class _OnboardingScreenState extends State<OnboardingScreen>
         ),
       );
 
+  Widget _signInBtn(String label, String emoji, VoidCallback onTap) => GestureDetector(
+        onTap: onTap,
+        child: Container(
+          width: double.infinity,
+          padding: const EdgeInsets.symmetric(vertical: 14),
+          decoration: BoxDecoration(
+            color: AppColors.cream,
+            borderRadius: BorderRadius.circular(50),
+            border: Border.all(color: AppColors.brownBorder, width: 2),
+            boxShadow: [
+              BoxShadow(
+                  color: AppColors.brownBorder.withOpacity(0.2),
+                  offset: const Offset(2, 3),
+                  blurRadius: 0)
+            ],
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(emoji, style: const TextStyle(fontSize: 16)),
+              const SizedBox(width: 12),
+              Text(label,
+                  style: const TextStyle(
+                    fontFamily: 'DynaPuff',
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                    color: AppColors.textDark,
+                  )),
+            ],
+          ),
+        ),
+      );
+
+  void _showEmailSignInDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (ctx) {
+        return Dialog(
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+          backgroundColor: AppColors.cream,
+          child: Padding(
+            padding: const EdgeInsets.all(24.0),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Text(
+                  'Sign In with Email',
+                  style: TextStyle(
+                    fontFamily: 'DynaPuff',
+                    fontSize: 20,
+                    fontWeight: FontWeight.w700,
+                    color: AppColors.textDark,
+                  ),
+                ),
+                const SizedBox(height: 24),
+                _ValidatedField(
+                  controller: TextEditingController(),
+                  hint: 'Email Address',
+                  keyboardType: TextInputType.emailAddress,
+                  onChanged: (_) {},
+                  validator: (_) => null,
+                ),
+                const SizedBox(height: 16),
+                _ValidatedField(
+                  controller: TextEditingController(),
+                  hint: 'Password',
+                  obscureText: true,
+                  onChanged: (_) {},
+                  validator: (_) => null,
+                ),
+                const SizedBox(height: 24),
+                _sageBtn('Submit', () {
+                  Navigator.of(ctx).pop();
+                }),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
   Widget _glowDot({double size = 80}) => AnimatedBuilder(
         animation: Listenable.merge([_pulse, _glow]),
         builder: (_, __) => Stack(alignment: Alignment.center, children: [
@@ -473,6 +555,32 @@ class _OnboardingScreenState extends State<OnboardingScreen>
                         fontSize: 11,
                         color: AppColors.textLight),
                   ),
+                  const SizedBox(height: 32),
+                  const Row(
+                    children: [
+                      Expanded(child: Divider(color: AppColors.brownBorder, thickness: 1)),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 12),
+                        child: Text(
+                          'OR',
+                          style: TextStyle(
+                            fontFamily: 'DynaPuff',
+                            fontSize: 12,
+                            fontWeight: FontWeight.w700,
+                            color: AppColors.textMedium,
+                          ),
+                        ),
+                      ),
+                      Expanded(child: Divider(color: AppColors.brownBorder, thickness: 1)),
+                    ],
+                  ),
+                  const SizedBox(height: 24),
+                  _signInBtn('Sign in with Google', '🌐', () {}),
+                  const SizedBox(height: 12),
+                  _signInBtn('Sign in with Apple', '🍏', () {}),
+                  const SizedBox(height: 12),
+                  _signInBtn('Sign in with Email', '✉️', () => _showEmailSignInDialog(ctx)),
+                  const SizedBox(height: 24),
                 ]),
               ),
             ),
@@ -1200,6 +1308,7 @@ class _ValidatedField extends StatelessWidget {
   final List<TextInputFormatter>? inputFormatters;
   final void Function(String)? onChanged;
   final String? Function(String?)? validator;
+  final bool obscureText;
 
   const _ValidatedField({
     required this.controller,
@@ -1208,6 +1317,7 @@ class _ValidatedField extends StatelessWidget {
     this.inputFormatters,
     this.onChanged,
     this.validator,
+    this.obscureText = false,
   });
 
   @override
@@ -1226,6 +1336,7 @@ class _ValidatedField extends StatelessWidget {
       ),
       child: TextFormField(
         controller: controller,
+        obscureText: obscureText,
         keyboardType: keyboardType,
         inputFormatters: inputFormatters,
         onChanged: onChanged,
